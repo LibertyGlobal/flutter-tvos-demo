@@ -146,5 +146,5 @@ We are not endorsed by or affiliated with Google LLC.
   - Check if both `ios_deployment_target` & `MinimumOSVersion` in the engine and app match. Both must be `12.0`!
     - The `info.plist` file is copied from the engine to the `flutter.framework` folder and contains `12.0` 
 
-## Contributers
-Jürgen Wölke, Prikshit Chahar, Andrei Lesnitsky
+## Contributors
+Jürgen Wölke, Prikshit Chahar, [Andrei Lesnitsky](https://github.com/lesnitsky)
