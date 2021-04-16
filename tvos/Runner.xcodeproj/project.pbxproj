@@ -359,7 +359,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = CP2QTZMAPP;
 				ENABLE_BITCODE = YES;
-				FLUTTER_LOCAL_ENGINE = "/Users/jwoelke/Projects/Pers/flutter/engine/github/flutter-1.26/engine/src";
+				FLUTTER_LOCAL_ENGINE = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
@@ -498,7 +498,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = CP2QTZMAPP;
 				ENABLE_BITCODE = YES;
-				FLUTTER_LOCAL_ENGINE = "/Users/jwoelke/Projects/Pers/flutter/engine/github/flutter-1.26/engine/src";
+				FLUTTER_LOCAL_ENGINE = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
@@ -530,7 +530,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = CP2QTZMAPP;
 				ENABLE_BITCODE = YES;
-				FLUTTER_LOCAL_ENGINE = "/Users/jwoelke/Projects/Pers/flutter/engine/github/flutter-1.26/engine/src";
+				FLUTTER_LOCAL_ENGINE = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",

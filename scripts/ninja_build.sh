@@ -2,10 +2,6 @@
 
 set -e
 
-START_TIME=$SECONDS
-date
-
-pwd
 
 if [[ "$1" == "clean" ]]; then
 	echo "Clean build ..."
@@ -52,11 +48,3 @@ if [[ "$1" == "clean" ]] || [[ ! -d ./out/host_release ]]; then
 ./flutter/tools/gn --no-lto --runtime-mode=release
 fi  
 ninja -C out/host_release
-
-
-
-
-date
-ELAPSED_TIME=$(($SECONDS - $START_TIME))
-echo "Duration: $(($ELAPSED_TIME/60)) min $(($ELAPSED_TIME%60)) sec" 
-
