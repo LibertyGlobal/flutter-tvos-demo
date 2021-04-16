@@ -2,7 +2,7 @@
 
 # Flutter for Apple TV
 
-A modification of the Flutter engine + test application to demonstrate that Flutter applications runs on Apple TV
+A modification of the Flutter engine + test application to demonstrate that Flutter applications run on Apple TV
 
 This project (and Liberty Global repositories referred to) are for testing purposes only!
 
@@ -17,7 +17,7 @@ We are not endorsed by or affiliated with Google LLC.
     - It is possible to create a new `tvos` target, but this would have impact and more files would need to be changed and therefore require more effort to maintain Apple TV support in the engine
       - This can be done by modifiying the makefiles in the different projects
       - See &#39;real\_tvos\_target&#39; branch (not finished!)
-    - Instead of using `ios&` SDK, `tvos` SDK is used
+    - Instead of using `ios` SDK, `tvos` SDK is used
   - Disable/replace code not supported by `tvos` SDK
   - Added support for Apple TV remote
     - Swipe
@@ -46,9 +46,9 @@ We are not endorsed by or affiliated with Google LLC.
     - Changes compared to `ios` application setup:
         - Modified main storyboard
         - Icon set for tvos
-        - Custom script to compile application which replaces ‘code_backend.sh’ in the “build phases” step. This script is based on scripts from the engine test application which only use tools from the engine. The normal script cannot be used because it used the standard “flutter” tool which does not support ‘tvos’.
-    - Copy generated resources from real 'ios' app target. The test app target actually overwrites the ios build to use the resources.
-    - Change targets for application and pods to ‘tvos’ and set mininumm OS version to 12.0
+        - Custom script to compile application which replaces `code_backend.sh` in the “build phases” step. This script is based on scripts from the engine test application which only use tools from the engine. The normal script cannot be used because it used the standard “flutter” tool which does not support `tvos`.
+    - Copy generated resources from real `ios` app target. The test app target actually overwrites the `ios` build to use the resources.
+    - Change targets for application and pods to ‘tvos’ and set minimum OS version to 12.0
 
 ## Known limitations
 
@@ -65,15 +65,15 @@ We are not endorsed by or affiliated with Google LLC.
 
 ## Workarounds
 
-- Disabled fork commands etc. in &quot;process\_macos.cc&quot;
+- Disabled fork commands etc. in `process_macos.cc`
   - This should not be needed and only be compiled for host
   - [https://github.com/dart-lang/sdk/issues/39918#issuecomment-569806159](https://github.com/dart-lang/sdk/issues/39918#issuecomment-569806159)
-- Disabled fatal error in &quot;kernel\_translation\_helper.cc&quot;, still be investigated what the root cause is
+- Disabled fatal error in `kernel_translation_helper.cc`, still to be investigated what the root cause is
 
 ## Setting up engine / development environment
 
 - Host compilation (macos) fails on system with 16Gb memory, no issues on 32Gb mac
-  - Added &#39;--no-lto&#39;, see [https://github.com/flutter/flutter/issues/57207](https://github.com/flutter/flutter/issues/57207)
+  - Added `--no-lto` flag, see [https://github.com/flutter/flutter/issues/57207](https://github.com/flutter/flutter/issues/57207)
 - Based on instructions here: [_https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment_](https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment)_)_
 - Create empty directory called `engine` for you local copy of the repository and `cd` into it. (some tools assume this folder name!)
 - Create a `.gclient` file in engine directory with the following contents:
@@ -87,7 +87,7 @@ We are not endorsed by or affiliated with Google LLC.
         "safesync_url": "",
     }
     ```
-- Run `gclient sync` in engine directory
+- Run `gclient sync` in `engine` directory
 - See flutter wiki for Java SKD and &#39;ant&#39; dependencies
 - Install &quot;flutter&quot; version `2.0.4` ([https://flutter.dev/docs/get-started/install/macos](https://flutter.dev/docs/get-started/install/macos))
 
@@ -98,6 +98,7 @@ We are not endorsed by or affiliated with Google LLC.
 - **Note:** *Fectching all repositories and compiling the engine for Apple TV (all targets) requires at leaste `29Gb` of free diskspace!*
 - Run in `/engine/src/` script `sh ninja_build.sh` (located in script folder, see ![ninja_build.sh](scripts/ninja_build.sh))
   - Add paramter `clean` for a full rebuild.
+  - **Note:** *The `--no-lto` flag can be removed on 32Gb host systems* 
 - Based on: [https://github.com/flutter/flutter/wiki/Compiling-the-engine](https://github.com/flutter/flutter/wiki/Compiling-the-engine). The problem with the order described on this wiki is that the generated files for the host point to the ios/tvos sdk instead of macos
 
 ## Compiling application
@@ -147,5 +148,5 @@ We are not endorsed by or affiliated with Google LLC.
     - The `info.plist` file is copied from the engine to the `flutter.framework` folder and contains `12.0` 
 
 ## Contributors
-[Jürgen Wölke](https://github.com/jwoelke), [Prikshit Chahar](https://github.com/pch28), [Andrei Lesnitsky](https://github.com/lesnitsky)
+[Jürgen Wölke](https://github.com/jwoelke), [Prikshit Chahar](https://github.com/pch28), [Andrei Lesnitsky](https://github.com/lesnitsky)  
 v2.0.4: [Aleksandr Denisov](https://github.com/DenisovAV), [Oleksandr Prokhorenko](https://github.com/minikin), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)
