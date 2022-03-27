@@ -38,7 +38,7 @@ We are not endorsed by or affiliated with Google LLC.
       - https://dart.googlesource.com/sdk    --> https://github.com/LibertyGlobal/flutter-tvos-dart
       - https://skia.googlesource.com/skia   --> https://github.com/LibertyGlobal/flutter-tvos-skia
     - Tested flutter engines: 
-        - 1.15, 1.19-candidate-4, 1.22-candidate.13, 1.26.0-17.6-pre, 2.0.4
+        - 1.15, 1.19-candidate-4, 1.22-candidate.13, 1.26.0-17.6-pre, 2.0.4, 2.10.3
 - Framework
   - No modifications in &quot;flutter&quot; tool (/framework)
   - Platform `tvos` not supported, `ios` target cannot be used because without modifications it would the use wrong SDK(ios) to compile the application
@@ -81,7 +81,7 @@ We are not endorsed by or affiliated with Google LLC.
     {
         "managed": False,
         "name": "src/flutter",
-        "url": "https://github.com/LibertyGlobal/flutter-tvos-engine.git@2.0.4",
+        "url": "https://github.com/LibertyGlobal/flutter-tvos-engine.git@2.10.3",
         "custom_deps": {},
         "deps_file": "DEPS",
         "safesync_url": "",
@@ -89,7 +89,7 @@ We are not endorsed by or affiliated with Google LLC.
     ```
 - Run `gclient sync` in `engine` directory
 - See flutter wiki for Java SKD and &#39;ant&#39; dependencies
-- Install &quot;flutter&quot; version `2.0.4` ([https://flutter.dev/docs/get-started/install/macos](https://flutter.dev/docs/get-started/install/macos))
+- Install &quot;flutter&quot; version `2.10.3` ([https://flutter.dev/docs/get-started/install/macos](https://flutter.dev/docs/get-started/install/macos))
 
 ## Compiling the engine
 
@@ -149,4 +149,5 @@ We are not endorsed by or affiliated with Google LLC.
 
 ## Contributors
 [Jürgen Wölke](https://github.com/jwoelke), [Prikshit Chahar](https://github.com/pch28), [Andrei Lesnitsky](https://github.com/lesnitsky)  
-v2.0.4: [Aleksandr Denisov](https://github.com/DenisovAV), [Oleksandr Prokhorenko](https://github.com/minikin), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)
+v2.0.4: [Aleksandr Denisov](https://github.com/DenisovAV), [Oleksandr Prokhorenko](https://github.com/minikin), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)  
+v2.10.3: [Aleksandr Denisov](https://github.com/DenisovAV), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)
