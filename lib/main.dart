@@ -289,7 +289,7 @@ class AxisTraversalPolicy extends FocusTraversalPolicy {
   }
 
   @override
-  FocusNode? findFirstFocus(FocusNode fn) {
+  FocusNode? findFirstFocus(FocusNode currentNode, {bool ignoreCurrentFocus = false}) {
     return null;
   }
 
