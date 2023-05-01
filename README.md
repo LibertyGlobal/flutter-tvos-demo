@@ -77,16 +77,19 @@ We are not endorsed by or affiliated with Google LLC.
 - Based on instructions here: [_https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment_](https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment)_)_
 - Create empty directory called `engine` for you local copy of the repository and `cd` into it. (some tools assume this folder name!)
 - Create a `.gclient` file in engine directory with the following contents:
-     ``` 
-    {
-        "managed": False,
-        "name": "src/flutter",
-        "url": "https://github.com/LibertyGlobal/flutter-tvos-engine.git@2.10.3",
-        "custom_deps": {},
-        "deps_file": "DEPS",
-        "safesync_url": "",
-    }
-    ```
+``` 
+solutions = [
+  {
+  "managed": False,
+  "name": "src/flutter",
+  "url": "https://github.com/LibertyGlobal/flutter-tvos-engine.git@2.10.3",
+  "custom_deps": {},
+  "deps_file": "DEPS",
+  "safesync_url": "",
+  },
+]
+```
+
 - Run `gclient sync` in `engine` directory
 - See flutter wiki for Java SKD and &#39;ant&#39; dependencies
 - Install &quot;flutter&quot; version `2.10.3` ([https://flutter.dev/docs/get-started/install/macos](https://flutter.dev/docs/get-started/install/macos))
