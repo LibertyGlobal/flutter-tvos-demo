@@ -100,11 +100,12 @@ BuildAppDebug() {
 
   strip "$OUTDIR/App.framework/App"
 
-  echo "copy frameworks"
+  echo " └─copy frameworks"
   cp "$PROJECT_DIR/../scripts/Info.plist" "$OUTDIR/App.framework/Info.plist"
 
   cp -R "${OUTDIR}/"{App.framework,Flutter.framework} "$TARGET_BUILD_DIR"
 
+  # Sign the binaries we moved.
   echo " └─Sign"
   if [[ "$debug_sim" != "true" ]]; then
     codesign --force --verbose --sign "${EXPANDED_CODE_SIGN_IDENTITY}" -- "${TARGET_BUILD_DIR}/App.framework/App"
@@ -182,10 +183,11 @@ BuildAppRelease() {
 
   cp "$PROJECT_DIR/../scripts/Info.plist" "$OUTDIR/App.framework/Info.plist" 
   
-  echo "copy frameworks"
+  echo " └─copy frameworks"
   cp -R "${OUTDIR}/"{App.framework,Flutter.framework} "$BUILT_PRODUCTS_DIR"
   
   # Sign the binaries we moved.
+  echo " └─Sign"
   codesign --force --verbose --sign "${EXPANDED_CODE_SIGN_IDENTITY}" -- "${BUILT_PRODUCTS_DIR}/App.framework/App"
   codesign --force --verbose --sign "${EXPANDED_CODE_SIGN_IDENTITY}" -- "${BUILT_PRODUCTS_DIR}/Flutter.framework/Flutter"
 

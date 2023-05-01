@@ -4,7 +4,7 @@ set -e
 
 if [ "$1" == "ios" ]; then
   if [[ ! -d ./tvos ]] && [[ -d ./_ios ]] && [[ -d ./ios ]]; then
-    echo "switching to 'ios' "
+    echo "switching to 'ios -> tvos' "
     mv ./ios ./tvos
     mv ./_ios ./ios
   else
@@ -14,7 +14,7 @@ if [ "$1" == "ios" ]; then
 
 elif [[ "$1" == "tvos" ]] ; then
   if [[ ! -d ./_ios ]] && [[ -d ./tvos ]] && [[ -d ./ios ]]; then
-    echo "switching to 'tvos' "
+    echo "switching to 'tvos -> ios' "
     mv ./ios ./_ios
     mv ./tvos ./ios
   else
