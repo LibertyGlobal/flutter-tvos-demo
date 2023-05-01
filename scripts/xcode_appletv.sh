@@ -41,6 +41,7 @@ BuildAppDebug() {
     "$HOST_TOOLS/gen/frontend_server.dart.snapshot" \
     --sdk-root "$HOST_TOOLS/flutter_patched_sdk" \
     --tfa --target=flutter \
+    -DTV_MODE=ON \
     -DTARGET_PLATFORM=TVOS \
     --output-dill "$OUTDIR/App.framework/flutter_assets/kernel_blob.bin" \
     "$FLUTTER_APPLICATION_PATH/lib/main.dart"
@@ -50,7 +51,6 @@ BuildAppDebug() {
 
   "$DEVICE_TOOLS/gen_snapshot" --deterministic \
     --enable-asserts \
-    --no-causal_async_stacks \
     --lazy_async_stacks \
     --isolate_snapshot_instructions="$OUTDIR/isolate_snapshot_instr" \
     --snapshot_kind=app-jit \
@@ -63,7 +63,11 @@ BuildAppDebug() {
   cp "$DEVICE_TOOLS/../gen/flutter/lib/snapshot/vm_isolate_snapshot.bin" "$OUTDIR/App.framework/flutter_assets/vm_snapshot_data"
 
 
-  SYSROOT=$(xcrun --sdk appletvos --show-sdk-path)
+  if [[ "$debug_sim" == "true" ]]; then
+    SYSROOT=$(xcrun --sdk appletvsimulator --show-sdk-path)
+  else
+    SYSROOT=$(xcrun --sdk appletvos --show-sdk-path)
+  fi
 
   echo " └─Creating stub App using $SYSROOT"
 
@@ -71,6 +75,8 @@ BuildAppDebug() {
   if [[ "$debug_sim" == "true" ]]; then
     echo "static const int Moo = 88;" | xcrun clang -x c \
       -arch x86_64 \
+      -L"$SYSROOT/usr/lib" \
+      -lSystem \
       -fembed-bitcode-marker \
       -isysroot "$SYSROOT" \
       -mappletvsimulator-version-min=$tvos_deployment_target \
@@ -80,7 +86,7 @@ BuildAppDebug() {
       -install_name '@rpath/App.framework/App' \
       -o "$OUTDIR/App.framework/App" -
 
-  else    
+  else
     echo "static const int Moo = 88;" | xcrun clang -x c \
       -arch arm64 \
       -isysroot "$SYSROOT" \
@@ -95,9 +101,15 @@ BuildAppDebug() {
   strip "$OUTDIR/App.framework/App"
 
   echo "copy frameworks"
-  cp "$PROJECT_DIR/../scripts/Info.plist" "$OUTDIR/App.framework/Info.plist" 
+  cp "$PROJECT_DIR/../scripts/Info.plist" "$OUTDIR/App.framework/Info.plist"
 
   cp -R "${OUTDIR}/"{App.framework,Flutter.framework} "$TARGET_BUILD_DIR"
+
+  echo " └─Sign"
+  if [[ "$debug_sim" != "true" ]]; then
+    codesign --force --verbose --sign "${EXPANDED_CODE_SIGN_IDENTITY}" -- "${TARGET_BUILD_DIR}/App.framework/App"
+    codesign --force --verbose --sign "${EXPANDED_CODE_SIGN_IDENTITY}" -- "${TARGET_BUILD_DIR}/Flutter.framework/Flutter"
+  fi
 
   echo " └─Done"
 

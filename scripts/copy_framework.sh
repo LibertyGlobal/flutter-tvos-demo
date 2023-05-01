@@ -7,9 +7,8 @@
 # Exit on error
 set -e
 
-#FLUTTER_LOCAL_ENGINE=$2
 if [ -z "$FLUTTER_LOCAL_ENGINE" ]; then
-	echo " └─ERROR: FLUTTER_LOCAL_ENGINE not set!" 
+	echo " └─ERROR: FLUTTER_LOCAL_ENGINE not set!"
     return 1;
 fi
 

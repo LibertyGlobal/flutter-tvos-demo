@@ -1,12 +1,11 @@
 name: some_package
 description: A new flutter plugin project.
 version: 0.0.1
-author:
 homepage:
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.20.0"
+  sdk: ">=2.18.6 <3.0.0"
+  flutter: ">=2.5.0"
 
 dependencies:
   flutter:
