@@ -56,7 +56,6 @@ We are not endorsed by or affiliated with Google LLC.
 - No debugging capabilities
 - No Apple TV look and feel widgets, no integration of virtual keyboard, ...
 - Resource monitoring is not supported by tvos (using flutter tools)
-- Engine build describe below only works on x64 mac systems. Support for Apple Silicon will be added in a future release 
  
 ## Known Issues
 - When a debug version is installed on a simulator or Apple TV device, then the app will not load when selected on screen. It will only load from the xcode debugger. This is not an issue for release builds. This has most likely to do with the fact that the app is trying to connect to 127.0.0.1 which is not started because the flutter tools are not used.
@@ -166,4 +165,5 @@ We are not endorsed by or affiliated with Google LLC.
 ## Contributors
 [Jürgen Wölke](https://github.com/jwoelke), [Prikshit Chahar](https://github.com/pch28), [Andrei Lesnitsky](https://github.com/lesnitsky)  
 v2.0.4: [Aleksandr Denisov](https://github.com/DenisovAV), [Oleksandr Prokhorenko](https://github.com/minikin), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)  
-v2.10.3: [Aleksandr Denisov](https://github.com/DenisovAV), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)
+v2.10.3: [Aleksandr Denisov](https://github.com/DenisovAV), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)   
+v3.3.10: [Aleksandr Denisov](https://github.com/DenisovAV), [Andrei Kulbeda](https://github.com/qkul), [Jürgen Wölke](https://github.com/jwoelke)

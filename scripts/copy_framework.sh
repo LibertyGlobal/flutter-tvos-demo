@@ -7,6 +7,15 @@
 # Exit on error
 set -e
 
+if [[ $(uname -m) == "arm64" ]]; then
+	TARGET_POSTFIX='_arm64'
+	CLANG_POSTFIX='_arm64'
+else 
+	TARGET_POSTFIX=''
+	CLANG_POSTFIX='_X86'
+fi
+
+
 if [ -z "$FLUTTER_LOCAL_ENGINE" ]; then
 	echo " └─ERROR: FLUTTER_LOCAL_ENGINE not set!"
     return 1;
@@ -14,14 +23,14 @@ fi
 
 if [ "$1" == "release" ]; then
 	echo "Coping Flutter.framework (release)..."
-	DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_release/clang_x64
+	DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_release$TARGET_POSTFIX/clang$CLANG_POSTFIX
 elif [[ "$1" == "debug_sim" ]] ; then
 	echo "Coping Flutter.framework (debug-simulator)..."
-	DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_sim_unopt/clang_x64
+	DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_sim_unopt$TARGET_POSTFIX/clang$CLANG_POSTFIX
 else
 	#debug
 	echo "Coping Flutter.framework (debug)..."
-	DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_unopt/clang_x64
+	DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_unopt$TARGET_POSTFIX/clang$CLANG_POSTFIX
 fi
 
 
