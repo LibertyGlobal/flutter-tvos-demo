@@ -1,42 +1,50 @@
 #!/bin/bash
-
 set -e
+RED='\033[0;31m'
+NOCOLOR='\033[0m'
 
-pwd
+if [[ $(uname -m) == "arm64" ]]; then
+	echo "Host: arm64"
+	GN_SIM_ARGS="--simulator-cpu=arm64"
+	GN_ARGS="--mac-cpu=arm64"
+	OUTPUT_POSTFIX="_arm64"
+else 
+	echo "Host: x64"
+	GN_SIM_ARGS=""
+	GN_ARGS=""
+	OUTPUT_POSTFIX=""
+fi
 
 if [[ "$1" == "clean" ]]; then
 	echo "Clean build ..."
-rm -rf ./out/ios_debug_sim_unopt
-rm -rf ./out/ios_debug_unopt
-rm -rf ./out/ios_release
-rm -rf ./out/host_debug_unopt
-rm -rf ./out/host_release
+	rm -irf ./out/ios_debug_sim_unopt$OUTPUT_POSTFIX
+	rm -rf ./out/ios_debug_unopt$OUTPUT_POSTFIX
+	rm -rf ./out/ios_release$OUTPUT_POSTFIX
+	rm -rf ./out/host_debug_unopt$OUTPUT_POSTFIX
+	rm -rf ./out/host_release$OUTPUT_POSTFIX
 fi
 
-if [[ "$1" == "clean" ]] || [[ ! -d ./out/ios_debug_sim_unopt ]]; then
-./flutter/tools/gn --ios --simulator --unoptimized
+if [[ "$1" == "clean" ]] || [[ ! -d ./out/ios_debug_sim_unopt$OUTPUT_POSTFIX ]]; then
+   	./flutter/tools/gn --ios --no-goma --simulator --unoptimized $GN_SIM_ARGS
 fi
+ninja -C out/ios_debug_sim_unopt$OUTPUT_POSTFIX
 
-ninja -C out/ios_debug_sim_unopt
-
-if [[ "$1" == "clean" ]] || [[ ! -d ./out/ios_debug_unopt ]]; then
-./flutter/tools/gn --ios --unoptimized --no-goma --bitcode
+if [[ "$1" == "clean" ]] || [[ ! -d ./out/ios_debug_unopt$OUTPUT_POSTFIX ]]; then
+	./flutter/tools/gn --ios --no-goma --unoptimized --bitcode $GN_ARGS
 fi
+ninja -C out/ios_debug_unopt$OUTPUT_POSTFIX
 
-ninja -C out/ios_debug_unopt
-
-if [[ "$1" == "clean" ]] || [[ ! -d ./out/ios_release ]]; then
-./flutter/tools/gn --ios --runtime-mode=release --no-goma --bitcode
+if [[ "$1" == "clean" ]] || [[ ! -d ./out/ios_release$OUTPUT_POSTFIX ]]; then
+	./flutter/tools/gn --ios --no-goma --runtime-mode=release --bitcode $GN_ARGS
 fi
+ninja -C out/ios_release$OUTPUT_POSTFIX
 
-ninja -C out/ios_release
-
-if [[ "$1" == "clean" ]] || [[ ! -d ./out/host_debug_unopt ]]; then
-./flutter/tools/gn --unoptimized --no-prebuilt-dart-sdk
+if [[ "$1" == "clean" ]] || [[ ! -d ./out/host_debug_unopt$OUTPUT_POSTFIX ]]; then
+	./flutter/tools/gn --no-goma --unoptimized --no-prebuilt-dart-sdk $GN_ARGS
 fi
-ninja -C out/host_debug_unopt
+ninja -C out/host_debug_unopt$OUTPUT_POSTFIX
 
-if [[ "$1" == "clean" ]] || [[ ! -d ./out/host_release ]]; then
-./flutter/tools/gn --no-lto --runtime-mode=release --no-prebuilt-dart-sdk
+if [[ "$1" == "clean" ]] || [[ ! -d ./out/host_release$OUTPUT_POSTFIX ]]; then
+	./flutter/tools/gn --no-goma --no-lto --runtime-mode=release --no-prebuilt-dart-sdk $GN_ARGS
 fi
-ninja -C out/host_release
+ninja -C out/host_release$OUTPUT_POSTFIX

@@ -9,13 +9,24 @@ set -e
 
 debug_sim=""
 
+
+if [[ $(uname -m) == "arm64" ]]; then
+  TARGET_POSTFIX='_arm64'
+  CLANG_POSTFIX='_arm64'
+  SIM_ARCH='arm64'
+else 
+  TARGET_POSTFIX=''
+  CLANG_POSTFIX='_X86'
+  SIM_ARCH='x86_64'
+fi
+
 BuildAppDebug() {
 
-  HOST_TOOLS=$FLUTTER_LOCAL_ENGINE/out/host_debug_unopt 
+  HOST_TOOLS=$FLUTTER_LOCAL_ENGINE/out/host_debug_unopt$TARGET_POSTFIX
   if [[ "$debug_sim" == "true" ]]; then
-    DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_sim_unopt/clang_x64
+    DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_sim_unopt$TARGET_POSTFIX/clang$CLANG_POSTFIX
   else
-    DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_unopt/clang_x64
+    DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_unopt$TARGET_POSTFIX/clang$CLANG_POSTFIX
   fi
 
   ROOTDIR=$(dirname "$PROJECT_DIR")
@@ -74,7 +85,7 @@ BuildAppDebug() {
 
   if [[ "$debug_sim" == "true" ]]; then
     echo "static const int Moo = 88;" | xcrun clang -x c \
-      -arch x86_64 \
+      -arch $SIM_ARCH \
       -L"$SYSROOT/usr/lib" \
       -lSystem \
       -fembed-bitcode-marker \
@@ -120,8 +131,8 @@ BuildAppDebug() {
 
 BuildAppRelease() {
 
-  HOST_TOOLS=$FLUTTER_LOCAL_ENGINE/out/host_release
-  DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_release/clang_x64
+  HOST_TOOLS=$FLUTTER_LOCAL_ENGINE/out/host_release$TARGET_POSTFIX
+  DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_release/clang$CLANG_POSTFIX
 
   ROOTDIR=$(dirname "$PROJECT_DIR")
   OUTDIR=$ROOTDIR/build/ios/Release-iphoneos
