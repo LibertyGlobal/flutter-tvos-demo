@@ -31,14 +31,13 @@ We are not endorsed by or affiliated with Google LLC.
     - Keyboard input:
         - 1.26: Support for ios keyboard and no modifications needed. 
         - In flutter 1.15/1.19/1.22 a subset of keys is mapped to "macos" and "Android" key codes
-  - Enabled bitcode (mandatory for Apple TV)
   - Repositories modified
       - https://github.com/flutter/buildroot --> https://github.com/LibertyGlobal/flutter-tvos-buildroot  
       - https://github.com/flutter/engine    -->  https://github.com/LibertyGlobal/flutter-tvos-engine
       - https://dart.googlesource.com/sdk    --> https://github.com/LibertyGlobal/flutter-tvos-dart
       - https://skia.googlesource.com/skia   --> https://github.com/LibertyGlobal/flutter-tvos-skia
     - Tested flutter engines: 
-        - 1.15, 1.19-candidate-4, 1.22-candidate.13, 1.26.0-17.6-pre, 2.0.4, 2.10.3, 3.3.10
+        - 1.15, 1.19-candidate-4, 1.22-candidate.13, 1.26.0-17.6-pre, 2.0.4, 2.10.3, 3.3.10, 3.10.6
 - Framework
   - No modifications in &quot;flutter&quot; tool (/framework)
   - Platform `tvos` not supported, `ios` target cannot be used because without modifications it would the use wrong SDK(ios) to compile the application
@@ -82,7 +81,7 @@ We are not endorsed by or affiliated with Google LLC.
     {
       "managed": False,
       "name": "src/flutter",
-      "url": "git@github.com:LibertyGlobal/flutter-tvos-engine.git@3.3.10",
+      "url": "git@github.com:LibertyGlobal/flutter-tvos-engine.git@3.10.6",
       "custom_deps": {},
       "deps_file": "DEPS",
       "safesync_url": "",
@@ -92,7 +91,7 @@ We are not endorsed by or affiliated with Google LLC.
 
 - Run `gclient sync` in `engine` directory
 - See flutter wiki for Java SKD and &#39;ant&#39; dependencies
-- Install &quot;flutter&quot; version `3.3.10` ([https://flutter.dev/docs/get-started/install/macos](https://flutter.dev/docs/get-started/install/macos))
+- Install &quot;flutter&quot; version `3.10.6` ([https://flutter.dev/docs/get-started/install/macos](https://flutter.dev/docs/get-started/install/macos))
 
 ## Compiling the engine
 
@@ -167,3 +166,4 @@ We are not endorsed by or affiliated with Google LLC.
 v2.0.4: [Aleksandr Denisov](https://github.com/DenisovAV), [Oleksandr Prokhorenko](https://github.com/minikin), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)  
 v2.10.3: [Aleksandr Denisov](https://github.com/DenisovAV), [Maksim Nazaruk](https://github.com/MaksimNazaruk), [Andrei Kulbeda](https://github.com/qkul)   
 v3.3.10: [Aleksandr Denisov](https://github.com/DenisovAV), [Andrei Kulbeda](https://github.com/qkul), [Jürgen Wölke](https://github.com/jwoelke)
+v3.10.6: [Eldar Pikunov](https://github.com/EPik-dev), [Jürgen Wölke](https://github.com/jwoelke)
