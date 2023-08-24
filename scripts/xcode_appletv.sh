@@ -88,7 +88,6 @@ BuildAppDebug() {
       -arch $SIM_ARCH \
       -L"$SYSROOT/usr/lib" \
       -lSystem \
-      -fembed-bitcode-marker \
       -isysroot "$SYSROOT" \
       -mappletvsimulator-version-min=$tvos_deployment_target \
       -dynamiclib \
@@ -171,7 +170,6 @@ BuildAppRelease() {
   SYSROOT=$(xcrun --sdk appletvos --show-sdk-path)
 
   cc -arch arm64 \
-    -fembed-bitcode \
     -isysroot "$SYSROOT" \
     -mtvos-version-min=$tvos_deployment_target \
     -c "$OUTDIR/snapshot_assembly.S" \
@@ -180,7 +178,6 @@ BuildAppRelease() {
   echo " └─Linking app"
 
   clang -v -arch arm64 \
-    -fembed-bitcode \
     -isysroot "$SYSROOT" \
     -mtvos-version-min=$tvos_deployment_target \
     -dynamiclib -Xlinker -rpath -Xlinker @executable_path/Frameworks \

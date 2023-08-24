@@ -30,12 +30,12 @@ fi
 ninja -C out/ios_debug_sim_unopt$OUTPUT_POSTFIX
 
 if [[ "$1" == "clean" ]] || [[ ! -d ./out/ios_debug_unopt$OUTPUT_POSTFIX ]]; then
-	./flutter/tools/gn --ios --no-goma --unoptimized --bitcode $GN_ARGS
+	./flutter/tools/gn --ios --no-goma --unoptimized $GN_ARGS
 fi
 ninja -C out/ios_debug_unopt$OUTPUT_POSTFIX
 
 if [[ "$1" == "clean" ]] || [[ ! -d ./out/ios_release$OUTPUT_POSTFIX ]]; then
-	./flutter/tools/gn --ios --no-goma --runtime-mode=release --bitcode $GN_ARGS
+	./flutter/tools/gn --ios --no-goma --runtime-mode=release $GN_ARGS
 fi
 ninja -C out/ios_release$OUTPUT_POSTFIX
 
