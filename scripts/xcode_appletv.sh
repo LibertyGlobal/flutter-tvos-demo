@@ -131,7 +131,7 @@ BuildAppDebug() {
 BuildAppRelease() {
 
   HOST_TOOLS=$FLUTTER_LOCAL_ENGINE/out/host_release$TARGET_POSTFIX
-  DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_release/clang$CLANG_POSTFIX
+  DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_release$TARGET_POSTFIX/clang$CLANG_POSTFIX
 
   ROOTDIR=$(dirname "$PROJECT_DIR")
   OUTDIR=$ROOTDIR/build/ios/Release-iphoneos
