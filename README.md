@@ -38,7 +38,7 @@ We are not endorsed by or affiliated with Google LLC.
       - https://skia.googlesource.com/skia   --> https://github.com/LibertyGlobal/flutter-tvos-skia
       - https://github.com/google/perfetto --> https://github.com/LibertyGlobal/flutter-tvos-perfetto
     - Tested flutter engines: 
-        - 1.15, 1.19-candidate-4, 1.22-candidate.13, 1.26.0-17.6-pre, 2.0.4, 2.10.3, 3.3.10, 3.10.6, 3.13.8, 3.16.2, 3.27.4
+        - 1.15, 1.19-candidate-4, 1.22-candidate.13, 1.26.0-17.6-pre, 2.0.4, 2.10.3, 3.3.10, 3.10.6, 3.13.8, 3.16.2, 3.27.4, 3.32.8
 - Framework
   - No modifications in &quot;flutter&quot; tool (/framework)
   - Platform `tvos` not supported, `ios` target cannot be used because without modifications it would the use wrong SDK(ios) to compile the application
@@ -61,7 +61,7 @@ We are not endorsed by or affiliated with Google LLC.
 - When a debug version is installed on a simulator or Apple TV device, then the app will not load when selected on screen. It will only load from the xcode debugger. This is not an issue for release builds. This has most likely to do with the fact that the app is trying to connect to 127.0.0.1 which is not started because the flutter tools are not used.
 
 ## Supported devices
-- 3.27.4: minimum tvOS 13.0
+- 3.27.4, 3.32.8: minimum tvOS 13.0
 - older versions: minimum tvOS 12.0
 
 ## Workarounds
@@ -76,14 +76,14 @@ We are not endorsed by or affiliated with Google LLC.
 - Host compilation (macos) fails on system with 16Gb memory, no issues on 32Gb mac
   - Added `--no-lto` flag, see [https://github.com/flutter/flutter/issues/57207](https://github.com/flutter/flutter/issues/57207)
 - Based on instructions here: [_https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment_](https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment)_)_
-- Create empty directory called `engine` for you local copy of the repository and `cd` into it. (some tools assume this folder name!)
+- Create empty folder and `cd` into it. (some tools assume this folder name!)
 - Create a `.gclient` file in engine directory with the following contents:
   ``` 
   solutions = [
     {
       "managed": False,
-      "name": "src/flutter",
-      "url": "git@github.com:LibertyGlobal/flutter-tvos-engine.git@3.27.4",
+      "name": ".",
+      "url": "git@github.com:LibertyGlobal/flutter-tvos-engine.git@3.32.8",
       "custom_deps": {},
       "deps_file": "DEPS",
       "safesync_url": "",
@@ -91,9 +91,9 @@ We are not endorsed by or affiliated with Google LLC.
   ] 
   ```
 
-- Run `gclient sync` in `engine` directory
+- Run `gclient sync`
 - See flutter wiki for Java SKD and &#39;ant&#39; dependencies
-- Install &quot;flutter&quot; version `3.27.4` ([https://flutter.dev/docs/get-started/install/macos](https://flutter.dev/docs/get-started/install/macos))
+- Install &quot;flutter&quot; version `3.32.8` ([https://flutter.dev/docs/get-started/install/macos](https://flutter.dev/docs/get-started/install/macos))
 
 ## Compiling the engine
 
@@ -186,3 +186,4 @@ v3.10.6: [Eldar Pikunov](https://github.com/EPik-dev), [Jürgen Wölke](https://
 v3.13.8: not on GitHub  
 v3.16.2: not on GitHub  
 v3.27.4: [Neelam Bansal](https://github.com/Neelambansal), [Nidhim Mathew](https://github.com/NidhinKoikkara), [Satnam Singh](https://github.com/NidhinKoikkara), [Jürgen Wölke](https://github.com/jwoelke)
+v3.32.8: 

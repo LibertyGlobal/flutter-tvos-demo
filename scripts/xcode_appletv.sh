@@ -22,6 +22,7 @@ fi
 
 BuildAppDebug() {
 
+  HOST_TOOLS_REL=$FLUTTER_LOCAL_ENGINE/out/host_release$TARGET_POSTFIX
   HOST_TOOLS=$FLUTTER_LOCAL_ENGINE/out/host_debug_unopt$TARGET_POSTFIX
   if [[ "$debug_sim" == "true" ]]; then
     DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_debug_sim_unopt$TARGET_POSTFIX
@@ -30,7 +31,8 @@ BuildAppDebug() {
   fi
 
   if [[ $(uname -m) == "arm64" ]]; then
-    GEN_SNAPSHOT=$DEVICE_TOOLS/gen_snapshot$TARGET_POSTFIX
+    GEN_SNAPSHOT=$DEVICE_TOOLS/clang$CLANG_POSTFIX/gen_snapshot
+#    GEN_SNAPSHOT=$DEVICE_TOOLS/gen_snapshot$TARGET_POSTFIX
   else
     GEN_SNAPSHOT=$DEVICE_TOOLS/clang$CLANG_POSTFIX/gen_snapshot
   fi
@@ -56,8 +58,8 @@ BuildAppDebug() {
 
   echo " └─Compiling kernel"
 
-  "$HOST_TOOLS/dart-sdk/bin/dartaotruntime" \
-    "$HOST_TOOLS/gen/frontend_server_aot.dart.snapshot" \
+  "$HOST_TOOLS_REL/dart-sdk/bin/dartaotruntime" \
+    "$HOST_TOOLS_REL/gen/frontend_server_aot.dart.snapshot" \
     --sdk-root "$HOST_TOOLS/flutter_patched_sdk" \
     --tfa --target=flutter \
     -DTV_MODE=ON \
@@ -140,11 +142,11 @@ BuildAppRelease() {
   HOST_TOOLS=$FLUTTER_LOCAL_ENGINE/out/host_release$TARGET_POSTFIX
   DEVICE_TOOLS=$FLUTTER_LOCAL_ENGINE/out/ios_release$TARGET_POSTFIX
 
-  if [[ $(uname -m) == "arm64" ]]; then
-    GEN_SNAPSHOT=$DEVICE_TOOLS/gen_snapshot$TARGET_POSTFIX
-  else
+#  if [[ $(uname -m) == "arm64" ]]; then
+#    GEN_SNAPSHOT=$DEVICE_TOOLS/gen_snapshot$TARGET_POSTFIX
+#  else
     GEN_SNAPSHOT=$DEVICE_TOOLS/clang$CLANG_POSTFIX/gen_snapshot
-  fi
+#  fi
 
   ROOTDIR=$(dirname "$PROJECT_DIR")
   OUTDIR=$ROOTDIR/build/ios/Release-iphoneos

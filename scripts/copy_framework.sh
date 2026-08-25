@@ -15,6 +15,7 @@ else
 	CLANG_POSTFIX='_X86'
 fi
 
+FLUTTER_LOCAL_ENGINE=$2
 
 if [ -z "$FLUTTER_LOCAL_ENGINE" ]; then
 	echo " └─ERROR: FLUTTER_LOCAL_ENGINE not set!"
